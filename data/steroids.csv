@@ -1,0 +1,15 @@
+"trial","drug","ventilation","treat.events","treat.total","cont.events","cont.total"
+"CAPE COVID","Hydrocortisone","IV",10,61,17,59
+"CAPE COVID","Hydrocortisone","NIV",1,14,3,14
+"CoDEX","Dexamethasone","IV",69,128,76,128
+"CoDEX","Dexamethasone","NIV",0,0,0,0
+"COVID STEROID","Hydrocortisone","IV",4,7,0,6
+"COVID STEROID","Hydrocortisone","NIV",2,8,2,8
+"DEXA-COVID 19","Dexamethasone","IV",2,7,2,12
+"DEXA-COVID 19","Dexamethasone","NIV",0,0,0,0
+"RECOVERY","Dexamethasone","IV",95,324,283,683
+"RECOVERY","Dexamethasone","NIV",0,0,0,0
+"REMAP-CAP","Hydrocortisone","IV",18,68,10,49
+"REMAP-CAP","Hydrocortisone","NIV",8,37,19,43
+"Steroids-SARI","Methylprednisolone","IV",10,13,9,14
+"Steroids-SARI","Methylprednisolone","NIV",3,11,4,9
