@@ -1,0 +1,5 @@
+# Ignore R data files
+*.rds
+*.RData
+*.rda
+.DS_Store
