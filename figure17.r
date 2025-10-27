@@ -7,6 +7,8 @@ source("ggsavepdf.r")
 # =============================================================================
 # 13. Plot: Relative SE Length (Subgroup 1)
 # =============================================================================
+factor <- 2.5 
+
 df1 <- summarised %>% filter(a_interaction == "Aggregation bias")
 
 p1 <- df1 %>%
@@ -29,13 +31,20 @@ p1 <- df1 %>%
   facet_grid(k ~ scenario, switch = "y",
              labeller = labeller(k = ~ paste0("k = ", .x))) +
   defined_theme +
+  defined_shade() +
   theme(
-    legend.position      = "bottom",
+    text            = element_text(size = 11 * factor),
+    axis.text.x     = element_text(size = 9 * factor),
+    axis.text.y     = element_text(size = 9 * factor),
+    axis.title.x    = element_text(size = 10 * factor),
+    axis.title.y    = element_text(size = 10 * factor),
+    strip.text.x    = element_text(size = 10 * factor),
+    strip.text.y    = element_text(size = 10 * factor),
     legend.justification = "center",
-    legend.box.just      = "center",
-    legend.direction     = "horizontal",
-    text                 = element_text(size = 16),
-    strip.clip           = "on"
+    legend.position = "bottom",
+    plot.title      = element_text(size = 12 * factor),
+    plot.subtitle   = element_text(size = 10 * factor),
+    plot.caption    = element_text(size = 8 * factor)
   )
 
 df2 <- summarised %>% filter(a_interaction != "Aggregation bias")
@@ -60,14 +69,20 @@ p2 <- df2 %>%
   facet_grid(k ~ scenario, switch = "y",
              labeller = labeller(k = ~ paste0("k = ", .x))) +
   defined_theme +
+  defined_shade() +
   theme(
-    legend.position      = "none",
-    legend.justification = "center",
-    legend.box.just      = "center",
-    legend.direction     = "horizontal",
-    text                 = element_text(size = 16),
-    strip.clip           = "on"
+    text            = element_text(size = 11 * factor),
+    axis.text.x     = element_text(size = 9 * factor),
+    axis.text.y     = element_text(size = 9 * factor),
+    axis.title.x    = element_text(size = 10 * factor),
+    axis.title.y    = element_text(size = 10 * factor),
+    strip.text.x    = element_text(size = 10 * factor),
+    strip.text.y    = element_text(size = 10 * factor),
+    legend.position = "none",
+    plot.title      = element_text(size = 12 * factor),
+    plot.subtitle   = element_text(size = 10 * factor),
+    plot.caption    = element_text(size = 8 * factor)
   )
 
 p <- wrap_elements(p2) / wrap_elements(p1)
-ggsavepdf("img/viz_se_subgroup1.png", plot = p, width = 1400/72, height = 1400/72, dpi = 72)
+ggsavepdf("img/viz_se_subgroup1.png", plot = p, width = 22, height = 22)

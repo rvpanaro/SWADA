@@ -52,18 +52,18 @@ dat %>%
     subB_width_diff = mean(abs((subgroupB_ub - subgroupB_lb)/2 - subgroupB_width), na.rm = TRUE)
   )
 
-dat <- dat |>
-  mutate(
-    subgroupA_width = 1.959964 * subgroupA_se,
-    subgroupA_lb = subgroupA_b - subgroupA_width,
-    subgroupA_ub = subgroupA_b + subgroupA_width,
-    subgroupA_contained = (subgroupA_lb < target_A) & (subgroupA_ub > target_A),
-    
-    subgroupB_width = 1.959964 * subgroupB_se,
-    subgroupB_lb = subgroupB_b - subgroupB_width,
-    subgroupB_ub = subgroupB_b + subgroupB_width,
-    subgroupB_contained = (subgroupB_lb < target_B) & (subgroupB_ub > target_B)
-  )  
+# dat <- dat |>
+#   mutate(
+#     subgroupA_width = 1.959964 * subgroupA_se,
+#     subgroupA_lb = subgroupA_b - subgroupA_width,
+#     subgroupA_ub = subgroupA_b + subgroupA_width,
+#     subgroupA_contained = (subgroupA_lb < target_A) & (subgroupA_ub > target_A),
+#     
+#     subgroupB_width = 1.959964 * subgroupB_se,
+#     subgroupB_lb = subgroupB_b - subgroupB_width,
+#     subgroupB_ub = subgroupB_b + subgroupB_width,
+#     subgroupB_contained = (subgroupB_lb < target_B) & (subgroupB_ub > target_B)
+#   )  
 
 # Check if the CI width matches ±1.96 × SE (within rounding error)
 dat %>%
@@ -106,8 +106,8 @@ dat <- dat |>
   ) |>
   ungroup() |>
   mutate(
-    se_interaction_rel_AD = round(interaction_se / se_AD, 2),
-    se_subgroupA_rel_DA   = round(subgroupA_se / se_DA,   2)
+    se_interaction_rel_AD = interaction_se / se_AD, 
+    se_subgroupA_rel_DA   = subgroupA_se / se_DA   
   )
 
 # 6. Summarise Simulation Results
@@ -115,9 +115,10 @@ summarised <- dat |>
   group_by(experiment, method) |>
   summarise(
     experiment            = first(experiment),
+    n_rep                 = n(),
     k                     = mean(k, na.rm = TRUE), 
     tau                   = mean(tau, na.rm = TRUE), 
-    tauW                   = mean(tauW, na.rm = TRUE), 
+    tauW                  = mean(tauW, na.rm = TRUE), 
     a_interaction         = first(a_interaction), 
     scenario              = first(scenario), 
     convergence           = mean(is.na(interaction_contained)),
@@ -137,8 +138,8 @@ summarised <- dat |>
     se_interaction        = mean(interaction_se,         na.rm = TRUE),
     se_subgroup1          = mean(subgroupA_se,           na.rm = TRUE),
     se_subgroup2          = mean(subgroupB_se,           na.rm = TRUE),
-    se_interaction_rel_AD = median(se_interaction_rel_AD,   na.rm = TRUE),
-    se_subgroup1_rel_DA   = median(se_subgroupA_rel_DA,     na.rm = TRUE)
+    se_interaction_rel_AD = mean(se_interaction_rel_AD,   na.rm = TRUE),
+    se_subgroup1_rel_DA   = mean(se_subgroupA_rel_DA,     na.rm = TRUE)
   ) |>
   mutate(
     type = if_else(

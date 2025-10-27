@@ -78,6 +78,7 @@ p1 <- df1 |>
     axis.title.y    = element_text(size = 10 * factor),
     strip.text.x    = element_text(size = 10 * factor),
     strip.text.y    = element_text(size = 10 * factor),
+    legend.justification = "center",
     legend.position = "bottom",
     plot.title      = element_text(size = 12 * factor),
     plot.subtitle   = element_text(size = 10 * factor),
@@ -105,7 +106,7 @@ p2 <- df2 |>
   scale_y_continuous(breaks = seq(92, 98, 2), labels = ~ paste0(.x, "%")) +
   facet_grid(k ~ scenario, switch = "y",
              labeller = labeller(k = ~ paste0("k = ", .x))) +
-   defined_shade() +
+  defined_shade() +
   defined_theme +
   theme(
     text            = element_text(size = 11 * factor),

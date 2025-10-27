@@ -6,7 +6,7 @@ source("ggsavepdf.r")
 # =============================================================================
 # 15. Plot: Treatment Effect Coverage (Subgroup 1)
 # =============================================================================
-factor = 2 
+factor = 2.5 
 
 p1 <- summarised %>%
   filter(a_interaction == "Aggregation bias") %>%
@@ -19,7 +19,7 @@ p1 <- summarised %>%
   geom_line() +
   geom_point(size = 4) +
   scale_shape_manual(values = 0:11) +
-  coord_cartesian(ylim = c(75, 98)) +
+  scale_y_continuous(breaks = c(seq(30, 90, 10)), labels = ~ paste0(.x, "%")) +
   labs(
     x = expression("Treatment heterogeneity" ~ (tau)),
     y = "",
@@ -39,6 +39,7 @@ p1 <- summarised %>%
     strip.text.x    = element_text(size = 10 * factor),
     strip.text.y    = element_text(size = 10 * factor),
     legend.position = "bottom",
+    legend.justification = "bottom",
     plot.title      = element_text(size = 12 * factor),
     plot.subtitle   = element_text(size = 10 * factor),
     plot.caption    = element_text(size = 8 * factor)
@@ -55,7 +56,7 @@ p2 <- summarised %>%
   geom_line() +
   geom_point(size = 4) +
   scale_shape_manual(values = 0:11)+
-  coord_cartesian(ylim = c(92, 98)) +
+  scale_y_continuous(breaks = seq(92, 98, 2), labels = ~ paste0(.x, "%")) +
   labs(
     x = expression("Treatment heterogeneity" ~ (tau)),
     y = "",
@@ -74,6 +75,7 @@ p2 <- summarised %>%
     strip.text.x    = element_text(size = 10 * factor),
     strip.text.y    = element_text(size = 10 * factor),
     legend.position = "bottom",
+    legend.justification = "center",
     plot.title      = element_text(size = 12 * factor),
     plot.subtitle   = element_text(size = 10 * factor),
     plot.caption    = element_text(size = 8 * factor)

@@ -7,7 +7,7 @@ source("ggsavepdf.r")
 # =============================================================================
 # 8. Plot: Relative SE Length (Subgroup 1)
 # =============================================================================
-factor = 1.5 
+factor = 2
 
 df1 <- summarised %>% filter(a_interaction == "Aggregation bias")
 df2 <- summarised %>% filter(a_interaction != "Aggregation bias")
@@ -30,7 +30,7 @@ p1_small <- df1_small |>
   labs(
     title = "Noncollapsibility with confounding \n (aggregation bias)",
     x = "",
-    y     = "Relative subgroup interval width (reference: DA)"
+    y     = "Average change on subgroup interval width"
   ) +
   defined_theme +
   theme(
@@ -60,8 +60,8 @@ p2_small <- df2_small |>
   labs(
     title = "Noncollapsibility without confounding \n (no aggregation bias)",
     x = expression("Treatment heterogeneity" ~ (tau)),
-    y     = "Relative subgroup interval width (reference: DA)"
-    ) +
+    y     = "Average change on subgroup interval width"
+  ) +
   defined_theme +
   theme(
     text          = element_text(size = 11 * factor),
@@ -83,4 +83,4 @@ p_small <- (
     legend.direction = "horizontal"   # laid out in a row
   )
 
-ggsavepdf("img/viz_se_subgroup1_small.png", plot = p_small, width = 16, height = 8)
+ggsavepdf("img/viz_se_subgroup1_small.png", plot = p_small, width = 20, height = 10)

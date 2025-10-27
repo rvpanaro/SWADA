@@ -6,7 +6,7 @@ source("ggsavepdf.r")
 # =============================================================================
 # 6. Plot: Mismatch Between Interaction Estimates (Boxplots)
 # =============================================================================
-factor = 1.5 
+factor = 2 
 
 ## 6.1 With Aggregation Bias
 df1 <- dat |>
@@ -112,4 +112,4 @@ boxp2_small <- ggplot(df2_small, aes(x = scenario, y = delta, fill = scenario)) 
   )
 
 boxp_small <- wrap_elements(boxp2_small) + wrap_elements(boxp1_small)
-ggsavepdf("img/viz_delta_small.png", plot = boxp_small, width = 14, height = 7)
+ggsavepdf("img/viz_delta_small.png", plot = boxp_small, width = 20, height = 10)

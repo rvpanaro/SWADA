@@ -6,7 +6,7 @@ source("ggsavepdf.r")
 # =============================================================================
 # 7. Plot: Relative SE Length (Interaction)
 # =============================================================================
-factor = 1.5 
+factor = 2
 
 df1 <- summarised |>
   group_by(method) |>
@@ -25,7 +25,7 @@ p1_small <- df1_small |>
     y     = 100 * se_interaction_rel_AD,
     color = method, shape = method, group = method
   ))+
-  coord_cartesian(ylim = c(100-10,100+15)) + 
+  coord_cartesian(ylim = c(100-15,100+15)) + 
   geom_abline(intercept = 100, slope = 0, linetype = "dashed") +
   geom_line() +
   geom_point(size = 4)  +
@@ -34,7 +34,7 @@ p1_small <- df1_small |>
   labs(
     title = "Noncollapsibility with confounding \n (aggregation bias)",
     x = " ",
-    y     = "Relative interaction interval width (reference: AD)"
+    y     = "Average change on interaction interval width"
   )  +
   defined_theme +
   theme(
@@ -55,7 +55,7 @@ p2_small <- df2_small |>
     y     = 100 * se_interaction_rel_AD,
     color = method, shape = method, group = method
   ))+
-  coord_cartesian(ylim = c(100-10,100+15)) + 
+  coord_cartesian(ylim = c(100-15,100+15)) + 
   geom_abline(intercept = 100, slope = 0, linetype = "dashed") +
   geom_line() +
   geom_point(size = 4) +
@@ -64,7 +64,7 @@ p2_small <- df2_small |>
   labs(
     title = "Noncollapsibility without confounding \n (no aggregation bias)",
     x = expression("Interaction heterogeneity" ~ (tau[W])),
-    y     = "Relative interaction interval width (reference: AD)"
+    y     = "Average change on interactin interval width"
   )  +
   defined_theme +
   theme(
@@ -89,4 +89,4 @@ p_small <- (
   )
 
 p_small   
-ggsavepdf("img/viz_se_gamma_small.png", plot = p_small, width = 16, height = 8)
+ggsavepdf("img/viz_se_gamma_small.png", plot = p_small, width = 20, height = 10)

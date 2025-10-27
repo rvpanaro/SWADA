@@ -7,7 +7,7 @@ source("ggsavepdf.r")
 # 13. Plot: Mismatch Between Interaction Estimates (Boxplots)
 # =============================================================================
 
-factor = 3
+factor = 2.5
 
 ## 13.1 With Aggregation Bias
 df1 <- dat |>
@@ -48,7 +48,8 @@ boxp1 <- df1 %>%
     axis.title.y    = element_text(size = 10 * factor),
     strip.text.x    = element_text(size = 10 * factor),
     strip.text.y    = element_text(size = 10 * factor),
-    legend.position = "none",
+    legend.position = "bottom",
+    legend.justification = "center",
     plot.title      = element_text(size = 12 * factor),
     plot.subtitle   = element_text(size = 10 * factor),
     plot.caption    = element_text(size = 8 * factor)
@@ -101,4 +102,4 @@ boxp2 <- df2 %>%
 
 ## 8.3 Combine & Save
 boxp     <- wrap_elements(boxp2) / wrap_elements(boxp1)
-ggsavepdf("img/viz_delta.png", plot = boxp, width = 20, height = 20)
+ggsavepdf("img/viz_delta.png", plot = boxp, width = 22, height = 22)

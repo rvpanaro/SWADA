@@ -6,6 +6,8 @@ source("ggsavepdf.r")
 # =============================================================================
 # 12. Plot: Relative SE Length (Interaction)
 # =============================================================================
+factor <- 2.5 
+
 df1 <- summarised |>
   group_by(method) |>
   filter(a_interaction == "Aggregation bias")
@@ -31,12 +33,18 @@ p1 <- df1 |>
              labeller = labeller(k = ~ paste0("k = ", .x))) +
   defined_theme +
   theme(
-    legend.position      = "bottom",
+    text            = element_text(size = 11 * factor),
+    axis.text.x     = element_text(size = 9 * factor),
+    axis.text.y     = element_text(size = 9 * factor),
+    axis.title.x    = element_text(size = 10 * factor),
+    axis.title.y    = element_text(size = 10 * factor),
+    strip.text.x    = element_text(size = 10 * factor),
+    strip.text.y    = element_text(size = 10 * factor),
     legend.justification = "center",
-    legend.box.just      = "center",
-    legend.direction     = "horizontal",
-    text                 = element_text(size = 40),
-    strip.clip           = "on"
+    legend.position = "bottom",
+    plot.title      = element_text(size = 12 * factor),
+    plot.subtitle   = element_text(size = 10 * factor),
+    plot.caption    = element_text(size = 8 * factor)
   )
 
 df2 <- summarised |>
@@ -64,14 +72,19 @@ p2 <- df2 |>
              labeller = labeller(k = ~ paste0("k = ", .x))) +
   defined_theme +
   theme(
-    legend.position      = "none",
-    legend.justification = "center",
-    legend.box.just      = "center",
-    legend.direction     = "horizontal",
-    text                 = element_text(size = 40),
-    strip.clip           = "on"
+    text            = element_text(size = 11 * factor),
+    axis.text.x     = element_text(size = 9 * factor),
+    axis.text.y     = element_text(size = 9 * factor),
+    axis.title.x    = element_text(size = 10 * factor),
+    axis.title.y    = element_text(size = 10 * factor),
+    strip.text.x    = element_text(size = 10 * factor),
+    strip.text.y    = element_text(size = 10 * factor),
+    legend.position = "none",
+    plot.title      = element_text(size = 12 * factor),
+    plot.subtitle   = element_text(size = 10 * factor),
+    plot.caption    = element_text(size = 8 * factor)
   )
 
 p <- wrap_elements(p2) / wrap_elements(p1) + plot_layout(guides = "collect") 
 
-ggsavepdf("img/viz_se_gamma.png", plot = p, width = 20, height = 20)
+ggsavepdf("img/viz_se_gamma.png", plot = p, width = 22, height = 22)
