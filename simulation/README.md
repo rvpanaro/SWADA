@@ -4,9 +4,9 @@ Simulation code (reproducibility snapshot)
 This folder is the frozen January 2026 pipeline that generated the
 simulation results used in
 
-> Panaro, R., Röver, C., & Friede, T. (2025).
+> Panaro, R., Röver, C., & Friede, T.
 > *Subgroup comparisons within and across studies in meta-analysis.*
-> https://doi.org/10.48550/arXiv.2508.15531
+> Accepted for publication in *Research Synthesis Methods*.
 
 The published simulation figures are produced from
 
